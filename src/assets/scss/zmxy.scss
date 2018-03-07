@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.zmxy{
+    position: relative;
+    .login-item{
+        .flex-1{
+            position: relative;
+            .input{
+                padding-left: R(30);
+            }
+            &:after{
+                @extend %iconfont;
+                position: absolute;left: 0;top: R(6);color: #999;font-size: R(25);
+            }
+            &.phone{
+                &:after{
+                    content: '\e671';
+                }
+            }
+            &.idcard{
+                &:after{
+                    content: '\e62e';
+                }
+            }
+            &.name{
+                &:after{
+                    content: '\e60f';
+                }
+            }
+        }
+    }
+    .score{
+        position: absolute;top: R(-70);left: 50%;width: R(120);height:R(120);text-align: center;border-radius: 100%;background: #fff;padding: R(20);margin-left:R(-60);
+        .zmf{
+            font-size: R(40);
+        }
+    }
+    .tips{
+        text-align: center;line-height: R(25);
+    }
+    .pro-head{
+        height: 1px;background: #ccc;position: relative;
+        span{
+            position: absolute;top: -12px;left: 50%;font-size: 14px;width: 130px;background: #fff;margin-left: -65px;
+        }
+    }
+
+}

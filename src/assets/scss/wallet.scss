@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.wallet-wrap{
+    .stream{
+        li{
+            border-bottom: 1px solid #e1e1e1;padding: 0 R(10);line-height: R(30);
+            background:#fff;
+        }
+        &>p{
+
+        }
+    }
+    .summary{
+        background-color: $color;
+        .sum{
+            padding: R(30) 0;
+            p{
+                color: #fff;text-align: center;
+            }
+        }
+        .price{
+            background-color: #51cccf;color: #fff;padding: R(10) 0;text-align: center;
+        }
+    }
+}
