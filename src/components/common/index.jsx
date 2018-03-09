@@ -22,7 +22,6 @@ export class Header extends Component {
             <header className="index-bar">
                 {back}
                 <span className="title">{title}</span>
-                <a className="iconfont question"></a>
             </header>
         );
     }

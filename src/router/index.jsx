@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 import home from '../views/index';
-import product from '../views/order/product';
+import detail from '../views/detail';
 
 
 const routes = [
@@ -10,9 +10,9 @@ const routes = [
 		exact: true,
 		component: home
 	},
-	{ path: '/order/product',
+	{ path: '/detail/:id',
 		exact: false,
-		component: product
+		component: detail
 	}
 ];
 

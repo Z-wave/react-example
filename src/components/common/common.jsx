@@ -1,5 +1,7 @@
 global.ROOT_URL = process.env.NODE_ENV !== 'production' ? '' : 'https://cnodejs.org/api'; 
 
+global.isLoad = true
+
 global.getQueryString = function(name){
     return decodeURIComponent((new RegExp('[?|&]'+name+'='+'([^&;]+?)(&|#|;|$)').exec(location.href)||[,""])[1].replace(/\+/g,'%20'))||null;
 }    
