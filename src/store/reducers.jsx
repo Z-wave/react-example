@@ -1,27 +1,7 @@
-// 工具函数，用于组织多个reducer，并返回reducer集合
-import {combineReducers} from 'redux'
-// 默认值
-import defaultState from './state'
+import {combineReducers} from "redux";
+import indexList from "./indexList";
 
-// 一个reducer就是一个函数
-function pageTitle(state = defaultState.pageTitle, action) {
-    // 不同的action有不同的处理逻辑
-    switch (action.type) {
-        case 'SET_PAGE_TITLE':
-            return action.data
-        default:
-            return state
-    }
-}
-
-function indexList(state = defaultState.indexList, action) {
-    switch (action.type) {
-        case 'SET_INDEX_LIST':
-            return action.data
-        default:
-            return state
-    }
-}
-
-// 导出所有reducer
-export default combineReducers({pageTitle, indexList})
+let Reducers = combineReducers({
+    indexList
+});
+export default Reducers;

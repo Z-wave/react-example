@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Route,BrowserRouter, Switch,Link} from 'react-router-dom';
+import {Route,BrowserRouter, Switch,NavLink} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import { setPageTitle, setIndexList } from '../store/actions'
 import {Header,Footer} from '../components/common/index';
 
 class App extends React.Component {
@@ -10,69 +9,46 @@ class App extends React.Component {
         super(props);
         this.state = {
             tab:'all',
-            page:1,
-            limit:7
+            data:[]
         };
     }
     
     componentDidMount() {
-        let { setPageTitle, setIndexList } = this.props
-
-        setPageTitle('新的标题')
-
-        setIndexList(this.state)
-
-        setInterval(this.handleScroll, 200);
+        this.updata()
     }
 
-    setTab = (type) => {
-        let { setPageTitle, setIndexList } = this.props
+    updata(tab,page){
+        this.props.dispatch(function(dispatch,getState){
+            axios.get('/v1/topics?tab=all&limit=10&page=1')
+                .then(function(res){
+                    dispatch({
+                        type: "TOPLIST_SUCC",
+                        data: res
+                    });
+                })
+        });
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            data: nextProps.data.data
+        });
+    }
+    
+    setTab (type) {
 
         this.setState({
-            tab:type,
-            page:1
-        },() => {
-            setIndexList(this.state)
+            tab:type
         })
     }
-    isScrolling = () => {
-        const { scrollTop } = document.documentElement || document.body
-        const { clientHeight, scrollHeight } = document.documentElement;
-        
-        return scrollTop + clientHeight + 40 >= scrollHeight;
-    
-    }
-    
-    
-    handleScroll = () => {
-        let { setPageTitle, setIndexList } = this.props
-        var timer = null
 
-        clearTimeout(timer);
-
-        if(this.isScrolling() && global.isLoad) {
-            //console.log('到底部了');
-            timer = setTimeout(() => {
-                this.setState({
-                    page:this.state.page + 1
-                },() => {
-                    global.isLoad = false
-                    //console.log(this.state);
-                    //setIndexList(this.state)
-                })
-            },400)
-    
-        }
-    
-    }
-    
     render() {
-        let { pageTitle, indexList } = this.props
+        let {data} = this.state
         return (
             <div id="wrapper" className="spacing">
                 <IndexHeader setTab = {type => this.setTab(type)} type = {this.state.tab} />
                 <div className="artcle">
-                    <IndexList indexList = {indexList} />
+                    <IndexList indexList = {data} />
                 </div>
                 <Footer />
             </div>
@@ -87,7 +63,7 @@ class IndexList extends Component {
                 let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = item
 
                 return(
-                    <Link to={'/detail/' + item.id} className="item react" key={id}>
+                    <NavLink to={'/detail/' + item.id} className="item react" key={id}>
                         <div className="pt10 pb10">
                             {
                                 item.top && <i className="iconfont green fs14 mr5 middle">&#xe64e;</i>
@@ -107,7 +83,7 @@ class IndexList extends Component {
                                 <p>{formatDate(last_reply_at)}</p>
                             </div>
                         </div>
-                    </Link>
+                    </NavLink>
                 )
             })
         )
@@ -121,43 +97,23 @@ class IndexHeader extends Component {
     render() {
         return (
             <div className="index-header">
-                <div className="box box-items">
-                    <div className={this.props.type =='all' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('all')}>全部</div>
-                    <div className={this.props.type =='ask' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('ask')}>精华</div>
-                    <div className={this.props.type =='share' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('share')}>分享</div>
-                    <div className={this.props.type =='good' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('good')}>问答</div>
-                    <div className={this.props.type =='dev' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('dev')}>灌水</div>
-                </div>
+                    {
+                    <div className="box box-items">
+                        <NavLink to="/index/all" className="flex-1" activeClassName="active">全部</NavLink>
+                        <NavLink to="/index/ask" className="flex-1" activeClassName="active">精华</NavLink>
+                        <NavLink to="/index/share" className="flex-1" activeClassName="active">分享</NavLink>
+                        <NavLink to="/index/good" className="flex-1" activeClassName="active">问答</NavLink>
+                        <NavLink to="/index/dev" className="flex-1" activeClassName="active">灌水</NavLink>
+                    </div>
+                    }
             </div>
         );
     }
 }
-
-// mapStateToProps：将state映射到组件的props中
-const mapStateToProps = (state) => {
-    return {
-      pageTitle: state.pageTitle,
-      indexList: state.indexList
-    }
-  }
+/* <div className={this.props.type =='all' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('all')}>全部</div>
+<div className={this.props.type =='ask' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('ask')}>精华</div>
+<div className={this.props.type =='share' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('share')}>分享</div>
+<div className={this.props.type =='good' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('good')}>问答</div>
+<div className={this.props.type =='dev' ? 'flex-1 active' : 'flex-1'} onClick={() => this.switchMenu('dev')}>灌水</div> */
   
-  // mapDispatchToProps：将dispatch映射到组件的props中
-  const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-      setPageTitle (data) {
-          // 如果不懂这里的逻辑可查看前面对redux-thunk的介绍
-          dispatch(setPageTitle(data))
-          // 执行setPageTitle会返回一个函数
-          // 这正是redux-thunk的所用之处:异步action
-          // 上行代码相当于
-          /*dispatch((dispatch, getState) => {
-              dispatch({ type: 'SET_PAGE_TITLE', data: data })
-          )*/
-      },
-      setIndexList (data) {
-          dispatch(setIndexList(data))
-      }
-    }
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect((state)=>(state.indexList))(App);

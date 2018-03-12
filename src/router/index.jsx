@@ -6,11 +6,13 @@ import detail from '../views/detail';
 
 
 const routes = [
-	{ path: '/',
-		exact: true,
+	{ 
+        path: '/index/:type',
+		exact: false,
 		component: home
 	},
-	{ path: '/detail/:id',
+	{ 
+        path: '/detail/:id',
 		exact: false,
 		component: detail
 	}
@@ -20,6 +22,7 @@ const Root = (props) => {
   return (
     <HashRouter>
         <Switch>
+        <Route path="/" exact render={()=>(<Redirect to="/index/all" />)}/>
         {
             routes.map((route, index) => (
                 <Route
@@ -30,7 +33,6 @@ const Root = (props) => {
                 />
             ))
         }
-        <Redirect from='' to="/" />
         </Switch>
     </HashRouter>
   );
