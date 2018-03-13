@@ -70,3 +70,31 @@ export class Footer extends Component {
         );
     }
 }
+
+/**
+ * 公共的用户信息
+ *
+ * @export
+ * @class Profile
+ * @extends {Component}
+ */
+export class Profile extends Component {
+    render() {
+        let {author,create_at,reply_count,visit_count,last_reply_at} = this.props
+        return (
+            <div className="box box-items profile">
+                <div className="pic">
+                    <img src={author.avatar_url} alt="" />
+                </div>
+                <div className="flex-1 ml5">
+                    <p>{author.loginname}</p>
+                    <p>{formatDate(create_at)}</p>
+                </div>
+                <div className="flex-1 text-right">
+                    <p>{reply_count}/{visit_count}</p>
+                    <p>{formatDate(last_reply_at)}</p>
+                </div>
+            </div>
+        );
+    }
+}

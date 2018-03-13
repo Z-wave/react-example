@@ -1,7 +1,9 @@
 import {combineReducers} from "redux";
 import indexList from "./indexList";
+import detailList from "./detailList";
 
 let Reducers = combineReducers({
-    indexList
+    indexList,
+    detailList
 });
 export default Reducers;

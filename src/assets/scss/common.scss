@@ -104,11 +104,11 @@ $view-width:640px !default;
 //*font------------------------------------------------------------------------------*/
 @font-face {
     font-family: 'iconfont';  /* project id 580276 */
-    src: url('//at.alicdn.com/t/font_580276_ts03f1ux1tdl5wmi.eot');
-    src: url('//at.alicdn.com/t/font_580276_ts03f1ux1tdl5wmi.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_580276_ts03f1ux1tdl5wmi.woff') format('woff'),
-    url('//at.alicdn.com/t/font_580276_ts03f1ux1tdl5wmi.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_580276_ts03f1ux1tdl5wmi.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_580276_53sowasg304quxr.eot');
+    src: url('//at.alicdn.com/t/font_580276_53sowasg304quxr.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_580276_53sowasg304quxr.woff') format('woff'),
+    url('//at.alicdn.com/t/font_580276_53sowasg304quxr.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_580276_53sowasg304quxr.svg#iconfont') format('svg');
 }
 %iconfont{
   font-family:"iconfont"!important;  
@@ -2373,20 +2373,77 @@ img[lazy=loading]{
         background: #38d8dc
     }
 }
+.profile{
+    .pic{
+        overflow: hidden;
+        img{
+
+            width: 50px;
+            border-radius: 100%;
+        }
+    }
+}
 .artcle{
     .item{
         padding: 10px;
         border-bottom: 1px solid #eee;
     }
-    .pic{
-        width: 50px;
-        border-radius: 100%;
-        overflow: hidden;
+}
+.reply_count{
+    background: #f5f2f2;
+    .color-block{
+        width: 5px;
+        height: 30px;
+        background: $color;
+    }
+}
+.re-list{
+    li{
+        padding:10px;
+        border-bottom: 1px solid #ddd;
+        .pic{
+            overflow: hidden;
+            img{
+    
+                width: 50px;
+                border-radius: 100%;
+            }
+        }
     }
 }
 
-
-
+.markdown-text{
+    .content{
+        word-wrap:break-word ;
+    }
+    a{
+        color: $color;
+        word-wrap:break-word ;
+    }
+    pre {
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: #f7f7f7;
+        border-radius: 3px;
+        code {
+            display: inline;
+            max-width: auto;
+            padding: 0;
+            margin: 0;
+            overflow: visible;
+            line-height: inherit;
+            background-color: transparent;
+            font-size: 100%;
+            word-break: normal;
+            white-space: pre;
+            background: transparent;
+            border: 0;
+            word-wrap:break-word ;
+        }
+    }
+}
 
 
 

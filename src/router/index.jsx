@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 
-import home from '../views/index';
-import detail from '../views/detail';
+import home from '../views/index/index';
+import detail from '../views/detail/detail';
 
 
 const routes = [
