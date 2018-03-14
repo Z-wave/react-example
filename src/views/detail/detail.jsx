@@ -54,7 +54,7 @@ class App extends React.Component {
                     reply_count={data.reply_count}
                     visit_count={data.visit_count}
                     last_reply_at={data.last_reply_at}
-                ></Profile>
+                />
             </div>
             <h1 className="fs20 bg-gray p10">{data.title}</h1>
             <div className="p10" dangerouslySetInnerHTML={{__html:data.content}}></div>

@@ -22,7 +22,7 @@ export default class ReplyList extends Component{
                             reply_count={reply_count}
                             visit_count={visit_count}
                             last_reply_at={last_reply_at}
-                        ></Profile>
+                        />
                     </NavLink>
                 )
             })

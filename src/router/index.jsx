@@ -3,6 +3,7 @@ import { BrowserRouter, HashRouter, Switch, Route, Redirect} from 'react-router-
 
 import home from '../views/index/index';
 import detail from '../views/detail/detail';
+import signin from '../views/user/signin';
 
 
 const routes = [
@@ -15,6 +16,11 @@ const routes = [
         path: '/detail/:id',
 		exact: false,
 		component: detail
+	},
+	{ 
+        path: '/signin',
+		exact: false,
+		component: signin
 	}
 ];
 

@@ -68,7 +68,7 @@ html {
 
 input, textarea {
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
+  border-radius: 0;
 }
 
 //*placeholder颜色*/
@@ -358,7 +358,6 @@ a.react,label.react {
 input[type="text"],input[type="tel"]{    
     border: 1px solid #ddd;
     height: R(35);
-    width: R(200);
     padding: R(5)
 }
 .bor-rad{border-radius: 0}
@@ -741,7 +740,7 @@ dl.list {
     background: #fff;border: 1px solid #bec0c0;border-radius: R(7);width: R(100);height: R(30);overflow: hidden;
     .minus,.add {
         @extend %iconfont;
-        display: inline-block;text-align: center;font-size: R(16);color: #6b6b6b;width: R(32);height: R(28);line-height: R(28);float: left;
+        text-align: center;font-size: R(16);color: #6b6b6b;width: R(32);height: R(28);line-height: R(28);float: left;
     }
     .disabled{
         background-color: #dfdfdf;
@@ -1331,9 +1330,7 @@ img[lazy=loading]{
                 width:100px;
                 color:#5a5859;
                 font-size:14px;
-                margin-left:10px;
-                .price-word{
-                }
+                margin-left:10px;                
                 .price-num{
                     font-size:18px;
                 }
@@ -1669,7 +1666,7 @@ img[lazy=loading]{
         }
     }
     .arr{
-        vertical-align: middle;position: relative;width: R(20);display: block;
+        position: relative;width: R(20);display: block;
         i{
             @extend %iconfont;
             font-size: R(12);display: inline-block;margin-left: R(10);color: #000;
@@ -2444,7 +2441,10 @@ img[lazy=loading]{
         }
     }
 }
-
+.access-token{
+    width: 100%;
+    border-radius: 3px;
+}
 
 
 

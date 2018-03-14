@@ -69,11 +69,11 @@ class IndexHeader extends Component {
             <div className="index-header">
                     {
                     <div className="box box-items">
-                        <NavLink to="/index/all" className="flex-1" activeClassName="active">全部</NavLink>
-                        <NavLink to="/index/ask" className="flex-1" activeClassName="active">精华</NavLink>
-                        <NavLink to="/index/share" className="flex-1" activeClassName="active">分享</NavLink>
-                        <NavLink to="/index/good" className="flex-1" activeClassName="active">问答</NavLink>
-                        <NavLink to="/index/dev" className="flex-1" activeClassName="active">灌水</NavLink>
+                        <NavLink to="/index/all" className="flex-1">全部</NavLink>
+                        <NavLink to="/index/ask" className="flex-1">精华</NavLink>
+                        <NavLink to="/index/share" className="flex-1">分享</NavLink>
+                        <NavLink to="/index/good" className="flex-1">问答</NavLink>
+                        <NavLink to="/index/dev" className="flex-1">灌水</NavLink>
                     </div>
                     }
             </div>
