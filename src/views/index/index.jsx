@@ -23,12 +23,12 @@ class App extends React.Component {
     updata(tab){
         this.props.dispatch((dispatch,getState) => {
             axios.get('/v1/topics?tab='+tab+'&limit=10&page=1')
-                .then(function(res){
-                    dispatch({
-                        type: "TOPLIST_SUCC",
-                        data: res
-                    });
-                })
+            .then(function(res){
+                dispatch({
+                    type: "TOPLIST_SUCC",
+                    data: res
+                });
+            })
         });
     }
 
@@ -67,7 +67,7 @@ class IndexHeader extends Component {
     render() {
         return (
             <div className="index-header">
-                    {
+                {
                     <div className="box box-items">
                         <NavLink to="/index/all" className="flex-1">全部</NavLink>
                         <NavLink to="/index/ask" className="flex-1">精华</NavLink>
@@ -75,7 +75,7 @@ class IndexHeader extends Component {
                         <NavLink to="/index/good" className="flex-1">问答</NavLink>
                         <NavLink to="/index/dev" className="flex-1">灌水</NavLink>
                     </div>
-                    }
+                }
             </div>
         );
     }

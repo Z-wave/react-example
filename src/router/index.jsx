@@ -4,6 +4,7 @@ import { BrowserRouter, HashRouter, Switch, Route, Redirect} from 'react-router-
 import home from '../views/index/index';
 import detail from '../views/detail/detail';
 import signin from '../views/user/signin';
+import user from '../views/user/index';
 
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
         path: '/signin',
 		exact: false,
 		component: signin
+	},
+	{ 
+        path: '/user/:name',
+		exact: false,
+		component: user
 	}
 ];
 

@@ -10,18 +10,25 @@ import {NavLink} from 'react-router-dom';
  */
 export class Header extends Component {
     render() {
-        let {title,showBack = true,leftTo} = this.props;
-        let back = null
+        let {title,leftTo,showBack = true,showSignOut = false} = this.props;
+        let back = null;
+        let signOut = null
         
         if(showBack){
             back = (
                 <NavLink to={leftTo} className="iconfont nav-back">&#xe60c;</NavLink>
             )
         }
+        if(showSignOut){
+            signOut = (
+                <NavLink to={leftTo} className="iconfont signout">&#xe66d;</NavLink>
+            )
+        }
         return (
             <header className="index-bar">
                 {back}
                 <span className="title">{title}</span>
+                {signOut}
             </header>
         );
     }

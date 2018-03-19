@@ -104,11 +104,11 @@ $view-width:640px !default;
 //*font------------------------------------------------------------------------------*/
 @font-face {
     font-family: 'iconfont';  /* project id 580276 */
-    src: url('//at.alicdn.com/t/font_580276_53sowasg304quxr.eot');
-    src: url('//at.alicdn.com/t/font_580276_53sowasg304quxr.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_580276_53sowasg304quxr.woff') format('woff'),
-    url('//at.alicdn.com/t/font_580276_53sowasg304quxr.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_580276_53sowasg304quxr.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_580276_np11axqvumqgp66r.eot');
+    src: url('//at.alicdn.com/t/font_580276_np11axqvumqgp66r.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_580276_np11axqvumqgp66r.woff') format('woff'),
+    url('//at.alicdn.com/t/font_580276_np11axqvumqgp66r.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_580276_np11axqvumqgp66r.svg#iconfont') format('svg');
 }
 %iconfont{
   font-family:"iconfont"!important;  
@@ -563,19 +563,19 @@ input[type="text"],input[type="tel"]{
     }
     .nav-back{
         @extend %iconfont;
-        display: block;width: R(45);height: R(45);line-height: R(45);float: left;font-size: R(22);color: #fff;
+        display: block;width: R(45);height: R(45);line-height: R(45);position: absolute;left:0;top: 0;font-size: R(20);color: #fff;
     }
     .logo{
         width: R(110);position: absolute;left:50%; top:50%;margin-left:R(-60);margin-top:R(-17);
     }
-    .question{
-        width: R(45);height: R(45);line-height: R(45);position: absolute;right:0;top: 0px;
+    .signout{
+        width: R(45);height: R(45);line-height: R(45);position: absolute;right:0;top: 0;font-size: R(22);color: #fff;
     }
     .user{
-        width: R(45);height: R(45);line-height: R(45);position: absolute;right: R(45);top: 0px;
+        width: R(45);height: R(45);line-height: R(45);position: absolute;right: R(45);top: 0;
     }
     .service{
-        width: R(45);height: R(45);line-height: R(45);position: absolute;left:0px;top: R(-2);
+        width: R(45);height: R(45);line-height: R(45);position: absolute;left:0;top: R(-2);
     }
     .index-bar-opea-wrap{
        width:100%;
