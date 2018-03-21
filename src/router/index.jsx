@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 import home from '../views/index/index';
-import detail from '../views/detail/detail';
+import detail from '../views/detail';
 import signin from '../views/user/signin';
 import user from '../views/user/index';
 

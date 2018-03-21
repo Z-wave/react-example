@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Router from './router';
 import axios from 'axios';
 import { Provider } from 'react-redux'
-import store from './store/store'
+import store from './redux/store'
 
 import './components/common/common';
 import './assets/scss/common.scss';

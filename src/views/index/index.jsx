@@ -1,60 +1,45 @@
 import React, { Component } from 'react';
-import {Route,BrowserRouter, Switch,NavLink} from 'react-router-dom';
-import axios from 'axios';
+import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux'
 import {Header,Footer} from '../../components/common/index';
+import actionCreator from '../../redux/actionCreator'
 import IndexList from "./indexList";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tab:'all',
-            data:[]
-        };
+        this.params = {
+            tab:props.match.params.type,
+            page:1,
+            limit:10
+        }
     }
     
     componentDidMount() {
-        const {tab} = this.state;
+        let { dispatch,match } = this.props
 
-        this.updata(tab)
-    }
-
-    updata(tab){
-        this.props.dispatch((dispatch,getState) => {
-            axios.get('/v1/topics?tab='+tab+'&limit=10&page=1')
-            .then(function(res){
-                dispatch({
-                    type: "TOPLIST_SUCC",
-                    data: res
-                });
-            })
-        });
+        dispatch(actionCreator.getIndexData(this.params));
     }
 
     componentWillReceiveProps(nextProps){
+        let { dispatch } = this.props
         let tab = nextProps.match.params.type
 
-        if(tab !== this.state.tab){
-            this.setState({
-                tab:tab
-            });
-
-            this.updata(tab)
-            return false
+        if(tab !== this.params.tab){
+            this.params.tab = tab
+            dispatch(actionCreator.getIndexData(this.params));
         }
-        this.setState({
-            data: nextProps.data.data
-        });
+
     }
 
     render() {
-        let {data} = this.state
+        let {indexList} = this.props
+        
         return (
             <div id="wrapper" className="spacing">
-                <IndexHeader setTab = {type => this.setTab(type)} type = {this.state.tab} />
+                <IndexHeader />
                 <div className="artcle">
-                    <IndexList indexList = {data}></IndexList>
+                    <IndexList indexList = {indexList}></IndexList>
                 </div>
                 <Footer />
             </div>
@@ -81,4 +66,4 @@ class IndexHeader extends Component {
     }
 }
   
-export default connect((state)=>(state.indexList))(App);
+export default connect(state => state)(App);
