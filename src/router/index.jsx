@@ -5,6 +5,8 @@ import home from '../views/index/index';
 import detail from '../views/detail';
 import signin from '../views/user/signin';
 import user from '../views/user/index';
+import create from '../views/topic/create';
+import messages from '../views/user/messages';
 
 
 const routes = [
@@ -27,6 +29,16 @@ const routes = [
         path: '/user/:name',
 		exact: false,
 		component: user
+	},
+	{ 
+        path: '/create',
+		exact: false,
+		component: create
+	},
+	{ 
+        path: '/messages',
+		exact: false,
+		component: messages
 	}
 ];
 

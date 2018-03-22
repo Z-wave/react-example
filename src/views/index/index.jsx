@@ -9,12 +9,12 @@ import IndexList from "./indexList";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.hasMore = false
+        this.isLoad = false
         this.params = {
             tab:props.match.params.type,
             page:1,
             limit:10,
-            first:false
+            more:false
         }
     }
     
@@ -34,10 +34,10 @@ class App extends React.Component {
         if(tab !== this.params.tab){
             this.params.tab = tab
             this.params.page = 1
-            this.params.first = false
+            this.params.more = false
             dispatch(actionCreator.getIndexData(this.params));
         }else{
-            this.hasMore = true
+            this.isLoad = true
         }
 
     }
@@ -46,11 +46,11 @@ class App extends React.Component {
     halderScroll(){
         let { dispatch } = this.props
 
-        if(isScrolling() && this.hasMore){
-            this.params.first = true
+        if(isScrolling() && this.isLoad){
+            this.params.more = true
             this.params.page++
             dispatch(actionCreator.getIndexData(this.params));
-            this.hasMore = false
+            this.isLoad = false
         }
     }
 

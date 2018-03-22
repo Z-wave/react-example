@@ -10,7 +10,7 @@ import axios from 'axios'
                     dispatch({
                         type: "GET_INDEXLIST",
                         data: res.data.data,
-                        first: data.first
+                        more: data.more
                     });
                 }
             }catch(e){
@@ -26,6 +26,22 @@ import axios from 'axios'
                 if(res.status == 200){
                     dispatch({
                         type: "GET_DETAIL",
+                        data: res.data.data
+                    });
+                }
+            }catch(e){
+                throw new Error('axios failure')
+            }
+        }
+    },
+    getUserData:(name) => {
+        return async (dispatch,getstate) => {
+            try {
+                const res = await axios.get('/v1/user/'+name)
+                
+                if(res.status == 200){
+                    dispatch({
+                        type: "GET_USER",
                         data: res.data.data
                     });
                 }

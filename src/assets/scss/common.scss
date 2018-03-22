@@ -2446,6 +2446,51 @@ img[lazy=loading]{
     border-radius: 3px;
 }
 
+.user-index{
+    background: #11b3b7;padding: R(20) 0;
+    .pic{
+        overflow: hidden;width: R(70);margin: 0 auto;border-radius: 100%;border:1px solid #fff;
+    }
+    p{
+        color: #fff;
+    }
+}
+.user-tab{
+    text-align: center;background: #eee;
+    .flex-1{
+        font-size: R(16);padding: R(10) 0;position: relative;
+    }
+    .active{
+        &::after{
+            content:' ';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: $color;
+        }
+    }
+}
+.topic-create{
+    select,input,textarea{
+        width: 100%;
+        border: none;
+        &:focus{
+            outline: none
+        }
+    }
+    input{
+        padding: 0
+    }
+    textarea{
+        height: R(180);
+    }
+    .item{
+        padding: R(10);
+        border-bottom: 1px solid #eee;
+    }
+}
 
 
 

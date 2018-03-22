@@ -9,6 +9,9 @@ import {NavLink} from 'react-router-dom';
  * @extends {Component}
  */
 export class Header extends Component {
+    signOut (){
+        this.props.signOut()
+    }
     render() {
         let {title,leftTo,showBack = true,showSignOut = false} = this.props;
         let back = null;
@@ -21,7 +24,7 @@ export class Header extends Component {
         }
         if(showSignOut){
             signOut = (
-                <NavLink to={leftTo} className="iconfont signout">&#xe66d;</NavLink>
+                <a className="iconfont signout" onClick={() => this.signOut()}>&#xe66d;</a>
             )
         }
         return (
@@ -53,13 +56,13 @@ export class Footer extends Component {
                         </NavLink>
                     </div>
                     <div className={'item flex-1'}>
-                        <NavLink to="/product" className="react">
+                        <NavLink to="/create" className="react">
                             <i className="iconfont">&#xe6ae;</i>
                             <p>发表</p>
                         </NavLink>
                     </div>
                     <div className={'item flex-1'}>
-                        <NavLink to="/product" className="react">
+                        <NavLink to="/messages" className="react">
                             <i className="iconfont">&#xe745;</i>
                             <p>消息</p>
                         </NavLink>

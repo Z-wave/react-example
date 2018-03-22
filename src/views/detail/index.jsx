@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route,BrowserRouter, Switch,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import {Header,Footer,Profile} from '../../components';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route,BrowserRouter, Switch,NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import {Header,Footer} from '../../components';
@@ -10,6 +10,8 @@ class App extends React.Component {
         this.state = {
             data:[]
         };
+    }
+    componentDidMount (){
         let user = JSON.parse(window.localStorage.getItem('user'))
         
         if(user){
@@ -17,19 +19,19 @@ class App extends React.Component {
         }
     }
     signin = () => {
-        let accesstoken = this.refs.accesstoken.value
-        if(!accesstoken) return alert('Access Token不能为空');
+        let {value} = this.refs.accesstoken
+        if(!value) return alert('Access Token不能为空');
 
-        axios.post('/v1/accesstoken', { accesstoken })
+        axios.post('/v1/accesstoken', { value })
         .then((res) => {
             if(res.data.success){
-                window.localStorage.setItem('accessToken',accesstoken)
+                window.localStorage.setItem('accessToken',value)
                 window.localStorage.setItem('user',JSON.stringify(res.data))
 
                 this.props.history.push('/user/'+res.data.loginname)
             }
         }).catch((error) => {
-            console.log('11');
+            
         })
 
     }
