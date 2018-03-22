@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Route,BrowserRouter, Switch,NavLink} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import {Header,Footer} from '../../components/common/index';
+import {Header,Footer} from '../../components';
 
 class App extends React.Component {
     constructor(props) {

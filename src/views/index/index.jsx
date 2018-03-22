@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux'
-import {Header,Footer} from '../../components/common/index';
+import {Header,Footer} from '../../components';
 import actionCreator from '../../redux/actionCreator'
 import IndexList from "./indexList";
+
 
 class App extends React.Component {
     constructor(props) {
         super(props);
+        this.hasMore = false
         this.params = {
             tab:props.match.params.type,
             page:1,
-            limit:10
+            limit:10,
+            first:false
         }
     }
     
@@ -19,6 +22,9 @@ class App extends React.Component {
         let { dispatch,match } = this.props
 
         dispatch(actionCreator.getIndexData(this.params));
+        setInterval(()=>{
+            this.halderScroll()
+        },1000)
     }
 
     componentWillReceiveProps(nextProps){
@@ -27,9 +33,25 @@ class App extends React.Component {
 
         if(tab !== this.params.tab){
             this.params.tab = tab
+            this.params.page = 1
+            this.params.first = false
             dispatch(actionCreator.getIndexData(this.params));
+        }else{
+            this.hasMore = true
         }
 
+    }
+
+    
+    halderScroll(){
+        let { dispatch } = this.props
+
+        if(isScrolling() && this.hasMore){
+            this.params.first = true
+            this.params.page++
+            dispatch(actionCreator.getIndexData(this.params));
+            this.hasMore = false
+        }
     }
 
     render() {

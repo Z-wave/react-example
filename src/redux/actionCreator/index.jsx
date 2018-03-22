@@ -9,7 +9,8 @@ import axios from 'axios'
                 if(res.status == 200){
                     dispatch({
                         type: "GET_INDEXLIST",
-                        data: res.data.data
+                        data: res.data.data,
+                        first: data.first
                     });
                 }
             }catch(e){
@@ -23,7 +24,6 @@ import axios from 'axios'
                 const res = await axios.get('/v1/topic/'+id)
                 
                 if(res.status == 200){
-                    console.log(res);
                     dispatch({
                         type: "GET_DETAIL",
                         data: res.data.data

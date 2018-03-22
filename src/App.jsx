@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
-import './components/common/common';
+import './utils';
 import './assets/scss/common.scss';
 
 

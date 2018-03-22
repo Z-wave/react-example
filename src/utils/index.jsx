@@ -1,7 +1,5 @@
 global.ROOT_URL = process.env.NODE_ENV !== 'production' ? '' : 'https://cnodejs.org/api'; 
 
-global.isLoad = true
-
 global.getQueryString = function(name){
     return decodeURIComponent((new RegExp('[?|&]'+name+'='+'([^&;]+?)(&|#|;|$)').exec(location.href)||[,""])[1].replace(/\+/g,'%20'))||null;
 }    
@@ -29,6 +27,12 @@ global.delcookie = function(name){
     if(cval!=null) document.cookie= name + "="+cval+"; path=/;expires="+exp.toGMTString();
 }
 
+global.isScrolling = function(){
+    const { scrollTop } = document.documentElement || document.body
+    const { clientHeight, scrollHeight } = document.documentElement;
+
+    return (scrollTop + clientHeight + 40) >= scrollHeight
+}
 /**
  * 格式化时间
  * 

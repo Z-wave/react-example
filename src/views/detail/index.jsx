@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Route,BrowserRouter, Switch,Link} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import {Header,Footer,Profile} from '../../components/common/index';
+import {Header,Footer,Profile} from '../../components';
 import ReplyList from "./replies";
 import actionCreator from '../../redux/actionCreator'
 

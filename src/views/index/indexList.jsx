@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import {NavLink} from "react-router-dom";
-import {Profile} from '../../components/common/index';
+import {Profile} from '../../components';
 
 export default class ReplyList extends Component{
     render() {

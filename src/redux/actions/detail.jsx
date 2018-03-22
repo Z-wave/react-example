@@ -1,4 +1,4 @@
-export default function detailList(state={data: {}},action) {
+export default (state={data: {}},action) => {
     switch(action.type){
         case "GET_DETAIL":
             return action.data
