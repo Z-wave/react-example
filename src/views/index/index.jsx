@@ -55,7 +55,8 @@ class App extends React.Component {
     }
 
     render() {
-        let {indexList} = this.props
+        console.log(this.props);
+        let {indexList = []} = this.props
         
         return (
             <div id="wrapper" className="spacing">
@@ -88,4 +89,4 @@ class IndexHeader extends Component {
     }
 }
   
-export default connect(state => state)(App);
+export default connect(state => state || {})(App);
