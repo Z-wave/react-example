@@ -21,7 +21,7 @@ class App extends React.Component {
     componentDidMount() {
         let { dispatch,match } = this.props
 
-        dispatch(actionCreator.getIndexData(this.params));
+        dispatch(actionCreator.testData(this.params));
         setInterval(()=>{
             this.halderScroll()
         },1000)
@@ -35,9 +35,11 @@ class App extends React.Component {
             this.params.tab = tab
             this.params.page = 1
             this.params.more = false
-            dispatch(actionCreator.getIndexData(this.params));
+            dispatch(actionCreator.testData(this.params));
         }else{
-            this.isLoad = true
+            setTimeout(() => {
+                this.isLoad = true
+            }, 2000);
         }
 
     }
@@ -45,17 +47,20 @@ class App extends React.Component {
     
     halderScroll(){
         let { dispatch } = this.props
+        let timer = null
 
-        if(isScrolling() && this.isLoad){
+        
+        if(isBottom() && this.isLoad){
+            console.log(1111);
             this.params.more = true
             this.params.page++
-            dispatch(actionCreator.getIndexData(this.params));
+            dispatch(actionCreator.testData(this.params));
             this.isLoad = false
         }
+
     }
 
     render() {
-        console.log(this.props);
         let {indexList = []} = this.props
         
         return (

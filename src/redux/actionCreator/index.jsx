@@ -1,6 +1,11 @@
  export default {
+    testData: (data) => {
+        return {
+            type: 'GET_START',
+            params:data
+        }
+    },
     getIndexData: (data) => {
-        console.log(11111);
         return {
             type: 'GET_INDEXLIST',
             params:data

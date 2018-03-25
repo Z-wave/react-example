@@ -27,7 +27,7 @@ global.delcookie = function(name){
     if(cval!=null) document.cookie= name + "="+cval+"; path=/;expires="+exp.toGMTString();
 }
 
-global.isScrolling = function(){
+global.isBottom = function(){
     const { scrollTop } = document.documentElement || document.body
     const { clientHeight, scrollHeight } = document.documentElement;
 

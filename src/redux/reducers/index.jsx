@@ -1,10 +1,11 @@
-export default (state = [], action) => {
-    console.log(3333);
+export default (state, action) => {
+    console.log(action);
     switch(action.type) {
         case 'GET_START':
             return {indexList:[], status: 'GET_START' }
         case "GET_INDEXLIST":
-            if(action.more){
+            let {params={}} = action
+            if(params.more){
                 let arr = [...state,...action.data]
                 return {indexList:arr, status: 'LOADING_STATE' }
             }else{
