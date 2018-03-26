@@ -11,18 +11,11 @@ class App extends React.Component {
             data:[]
         };
     }
-    componentDidMount (){
-        let user = JSON.parse(window.localStorage.getItem('user'))
-        
-        if(user){
-            this.props.history.push('/user/'+user.loginname)
-        }
-    }
     signin = () => {
         let {value} = this.refs.accesstoken
         if(!value) return alert('Access Token不能为空');
 
-        axios.post('/v1/accesstoken', { value })
+        axios.post('/v1/accesstoken', { accesstoken:value })
         .then((res) => {
             if(res.data.success){
                 window.localStorage.setItem('accessToken',value)

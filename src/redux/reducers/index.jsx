@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
 
-let init = {data: []}
-
-function indexList(state = init, action) {
+function indexList(state = {data: []}, action) {
     switch(action.type) {
         case "GET_INDEXLIST":
             let {params={}} = action
@@ -17,6 +15,16 @@ function indexList(state = init, action) {
             return state
     }
 }
-const Reducers = combineReducers({ indexList });
+function detail(state={},action) {
+    switch(action.type){
+        case "GET_DETAIL":
+            return action.data
+            
+        default:
+            return state;
+    }
+}
+
+const Reducers = combineReducers({ indexList,detail });
 
 export default Reducers;

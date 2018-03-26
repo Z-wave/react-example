@@ -24,21 +24,6 @@ const routes = [
         path: '/signin',
 		exact: false,
 		component: signin
-	},
-	{ 
-        path: '/user/:name',
-		exact: false,
-		component: user
-	},
-	{ 
-        path: '/create',
-		exact: false,
-		component: create
-	},
-	{ 
-        path: '/messages',
-		exact: false,
-		component: messages
 	}
 ];
 
@@ -47,19 +32,26 @@ const Root = (props) => {
     <HashRouter>
         <Switch>
         <Route path="/" exact render={()=>(<Redirect to="/index/all" />)}/>
-        {
-            routes.map((route, index) => (
-                <Route
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    component={route.component}
-                />
-            ))
-        }
+		<Route path='/index/:type' component={home} />
+		<Route path='/detail/:id' component={detail} />
+		<Route path='/signin' component={signin} />
+		<LoginComponent path='/user/:name' component={user} />
+		<LoginComponent path='/create' component={create} />
+		<LoginComponent path='/messages' component={messages} />
         </Switch>
     </HashRouter>
   );
 }
+
+const LoginComponent = ({ component:Component, ...data }) => (
+	<Route {...data} render={props => (
+	  !JSON.parse(window.localStorage.getItem('user')) 
+		? <Redirect to={{
+		  pathname: '/signin',
+		  state: { from: props.location }
+		}} />
+		: <Component {...props} />
+	)} />
+)
 
 export default Root;

@@ -18,8 +18,25 @@ function* getIndexData(params) {
 
 }
 
+function* getDetailData(params) {
+    try {
+        const res = yield axios.get('/v1/topic/'+params.id)
+        
+        if(res.status == 200){
+            yield put({
+                type: "GET_DETAIL",
+                data: res.data.data
+            });
+        }
+    }catch(e){
+        throw new Error('axios failure')
+    }
+
+}
+
 export default function* appSaga() {
     yield [
-        takeEvery("GET_START", getIndexData)
+        takeEvery("GET_START", getIndexData),
+        takeEvery("GET_DETAIL_START", getDetailData)
     ]
 }

@@ -4,7 +4,6 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import {Header,Footer,Profile} from '../../components';
 import ReplyList from "./replies";
-import actionCreator from '../../redux/actionCreator'
 
 class App extends React.Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class App extends React.Component {
     componentDidMount() {
         let { dispatch,match } = this.props
 
-        dispatch(actionCreator.getDetailData(match.params.id));
+        dispatch({type: 'GET_DETAIL_START',id:match.params.id});
     }
     
     render() {
