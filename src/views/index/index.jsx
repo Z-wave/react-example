@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux'
 import {Header,Footer} from '../../components';
-import actionCreator from '../../redux/actionCreator'
 import IndexList from "./indexList";
 
 
@@ -21,7 +20,7 @@ class App extends React.Component {
     componentDidMount() {
         let { dispatch,match } = this.props
 
-        dispatch(actionCreator.testData(this.params));
+        dispatch({type: 'GET_START',params:this.params});
         setInterval(()=>{
             this.halderScroll()
         },1000)
@@ -35,11 +34,9 @@ class App extends React.Component {
             this.params.tab = tab
             this.params.page = 1
             this.params.more = false
-            dispatch(actionCreator.testData(this.params));
+            dispatch({type: 'GET_START',params:this.params});
         }else{
-            setTimeout(() => {
-                this.isLoad = true
-            }, 2000);
+            this.isLoad = true
         }
 
     }
@@ -51,23 +48,23 @@ class App extends React.Component {
 
         
         if(isBottom() && this.isLoad){
-            console.log(1111);
             this.params.more = true
             this.params.page++
-            dispatch(actionCreator.testData(this.params));
+            dispatch({type: 'GET_START',params:this.params});
             this.isLoad = false
         }
 
     }
 
     render() {
-        let {indexList = []} = this.props
+        let {indexList} = this.props
+        let {data = []} = indexList
         
         return (
             <div id="wrapper" className="spacing">
                 <IndexHeader />
                 <div className="artcle">
-                    <IndexList indexList = {indexList}></IndexList>
+                    <IndexList indexList = {data}></IndexList>
                 </div>
                 <Footer />
             </div>
@@ -94,4 +91,4 @@ class IndexHeader extends Component {
     }
 }
   
-export default connect(state => state || {})(App);
+export default connect(state => state)(App);

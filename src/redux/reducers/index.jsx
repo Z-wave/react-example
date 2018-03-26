@@ -1,21 +1,22 @@
-export default (state, action) => {
-    console.log(action);
+import { combineReducers } from "redux";
+
+let init = {data: []}
+
+function indexList(state = init, action) {
     switch(action.type) {
-        case 'GET_START':
-            return {indexList:[], status: 'GET_START' }
         case "GET_INDEXLIST":
             let {params={}} = action
+            
             if(params.more){
-                let arr = [...state,...action.data]
-                return {indexList:arr, status: 'LOADING_STATE' }
+                let arr = [...state.data,...action.data]
+                return {data:arr}
             }else{
-                return {indexList:action.data, status: 'LOADING_STATE'}
+                return {data:action.data}
             }
-        case "GET_DETAIL":
-            return action.data
-        case "GET_USER":
-            return action.data
         default:
             return state
     }
 }
+const Reducers = combineReducers({ indexList });
+
+export default Reducers;

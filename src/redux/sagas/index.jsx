@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, takeEvery, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
 function* getIndexData(params) {
@@ -18,6 +18,8 @@ function* getIndexData(params) {
 
 }
 
-export default function* fecthData() {
-    yield takeEvery("GET_START", getIndexData)
+export default function* appSaga() {
+    yield [
+        takeEvery("GET_START", getIndexData)
+    ]
 }
