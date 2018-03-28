@@ -9,6 +9,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.isLoad = false
+        this.timer = null
         this.params = {
             tab:props.match.params.type,
             page:1,
@@ -20,12 +21,17 @@ class App extends React.Component {
     componentDidMount() {
         let { dispatch,match } = this.props
 
-        dispatch({type: 'GET_START',params:this.params});
-        setInterval(()=>{
+        dispatch({type: 'GET_LIST_START',params:this.params});
+        this.timer = setInterval(()=>{
             this.halderScroll()
         },1000)
+        
     }
 
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+    
     componentWillReceiveProps(nextProps){
         let { dispatch } = this.props
         let tab = nextProps.match.params.type
@@ -34,7 +40,7 @@ class App extends React.Component {
             this.params.tab = tab
             this.params.page = 1
             this.params.more = false
-            dispatch({type: 'GET_START',params:this.params});
+            dispatch({type: 'GET_LIST_START',params:this.params});
         }else{
             this.isLoad = true
         }
@@ -50,7 +56,7 @@ class App extends React.Component {
         if(isBottom() && this.isLoad){
             this.params.more = true
             this.params.page++
-            dispatch({type: 'GET_START',params:this.params});
+            dispatch({type: 'GET_LIST_START',params:this.params});
             this.isLoad = false
         }
 

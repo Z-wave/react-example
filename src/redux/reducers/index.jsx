@@ -6,8 +6,7 @@ function indexList(state = {data: []}, action) {
             let {params={}} = action
             
             if(params.more){
-                let arr = [...state.data,...action.data]
-                return {data:arr}
+                return {data:[...state.data,...action.data]}
             }else{
                 return {data:action.data}
             }
@@ -15,16 +14,51 @@ function indexList(state = {data: []}, action) {
             return state
     }
 }
-function detail(state={},action) {
+
+function topic(state={},action) {
     switch(action.type){
-        case "GET_DETAIL":
+        case "GET_TOPIC":
             return action.data
-            
+        case "SET_UPS":
+            let userId = localStorage.getItem('userId')
+
+            state.replies.map((item) => {
+                if(item.id == action.params.item.id){
+                    if(action.params.action === 'up'){
+                        item.ups.push(userId)
+                    }else{
+                        item.ups.map((v,i) => {
+                            if(v == userId){
+                                item.ups.splice(i,1)
+                            }
+                        })
+                    }
+                }
+            })
+            return Object.assign({},state)
         default:
             return state;
     }
 }
 
-const Reducers = combineReducers({ indexList,detail });
+function user(state={},action) {
+    switch(action.type){
+        case "GET_USER":
+            return action.data
+        default:
+            return state;
+    }
+}
+
+function messages(state={},action) {
+    switch(action.type){
+        case "GET_MESSAGES":
+            return action.data
+        default:
+            return state;
+    }
+}
+
+const Reducers = combineReducers({ indexList,topic,user, messages});
 
 export default Reducers;

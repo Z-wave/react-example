@@ -3,31 +3,33 @@ import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import {Header,Footer} from '../../components';
-import actionCreator from '../../redux/actionCreator'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:[]
-        };
+            index:0
+        }
     }
 
     componentDidMount(){
         let { dispatch,match } = this.props
         
-        dispatch(actionCreator.getUserData(match.params.name));
+        dispatch({type: 'GET_USER_START',name:match.params.name});
     }
 
     signOut = () => {
         let {history} = this.props
 
-        window.localStorage.removeItem('user')
+        window.localStorage.removeItem('accessToken')
         history.push('/signin')
     }
 
     render() {
-        let {user,recent_replies=[],recent_topics=[]} = this.props
+        
+        let {user} = this.props
+        let {recent_topics=[],recent_replies=[]} = user
+        let list = this.state.index === 0 ? recent_topics : recent_replies
 
         return (
             <div id="wrapper" className="spacing">
@@ -43,16 +45,22 @@ class App extends React.Component {
                         </p>
                     </div>
                     <div className="box user-tab">
-                        <div className="flex-1 active">主题</div>
-                        <div className="flex-1">回复</div>
+                        <div className={`flex-1 ${this.state.index === 0 ? 'active' : ''}`} onClick={() => {this.setState({index:0})}}>主题</div>
+                        <div className={`flex-1 ${this.state.index === 1 ? 'active' : ''}`} onClick={() => {this.setState({index:1})}}>回复</div>
                     </div>
                     <ul>
-                        <li className="p10 border-bottom">
-                            <a className="box box-items">
-                                <div className="flex-1 fs14 single-line">测试请发到客户端测试专区，违规影响用户的，直接封号</div>
-                                <div className="ml10 color-6">5天前</div>
-                            </a>
-                        </li>
+                    {
+                        list.map((item) => {
+                            return (
+                                <li className="p10 border-bottom" key={item.id}>
+                                    <NavLink to={`/detail/${item.id}`} className="box box-items">
+                                        <div className="flex-1 fs14 single-line">{item.title}</div>
+                                        <div className="ml10 color-6">{formatDate(item.last_reply_at)}</div>
+                                    </NavLink>
+                                </li>
+                            )
+                        })
+                    }
                     </ul>
                 <Footer />
             </div>

@@ -7,9 +7,6 @@ import {Header,Footer} from '../../components';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data:[]
-        };
     }
     signin = () => {
         let {value} = this.refs.accesstoken
@@ -19,12 +16,13 @@ class App extends React.Component {
         .then((res) => {
             if(res.data.success){
                 window.localStorage.setItem('accessToken',value)
-                window.localStorage.setItem('user',JSON.stringify(res.data))
+                window.localStorage.setItem('user',res.data.loginname)
+                window.localStorage.setItem('userId',res.data.id)
 
                 this.props.history.push('/user/'+res.data.loginname)
             }
         }).catch((error) => {
-            
+            alert('错误的accessToken');
         })
 
     }

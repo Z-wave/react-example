@@ -2491,7 +2491,16 @@ img[lazy=loading]{
         border-bottom: 1px solid #eee;
     }
 }
-
+.replies{
+    textarea{
+        width: 100%;
+        border: 1px solid #efefef;
+        padding: 10px;
+        &:focus{
+            outline: none
+        }
+    }
+}
 
 
 

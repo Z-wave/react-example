@@ -9,7 +9,7 @@ export default class ReplyList extends Component{
                 let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = item
 
                 return(
-                    <NavLink to={'/detail/' + item.id} className="item react" key={id}>
+                    <NavLink to={'/topic/' + item.id} className="item react" key={id}>
                         <div className="pt10 pb10">
                             {
                                 item.top && <i className="iconfont green fs14 mr5 middle">&#xe64e;</i>

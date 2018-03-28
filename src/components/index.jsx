@@ -68,7 +68,7 @@ export class Footer extends Component {
                         </NavLink>
                     </div>
                     <div className={'item flex-1'}>
-                        <NavLink to="/signin" className="react">
+                        <NavLink to={`/user/${localStorage.getItem('user')}`} className="react">
                             <i className="iconfont">&#xe60f;</i>
                             <p>我的</p>
                         </NavLink>

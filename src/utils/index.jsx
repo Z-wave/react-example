@@ -33,6 +33,7 @@ global.isBottom = function(){
 
     return (scrollTop + clientHeight + 40) >= scrollHeight
 }
+
 /**
  * 格式化时间
  * 

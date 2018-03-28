@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 import home from '../views/index/index';
-import detail from '../views/detail';
+import topic from '../views/topic';
 import signin from '../views/user/signin';
 import user from '../views/user/index';
 import create from '../views/topic/create';
@@ -16,9 +16,9 @@ const routes = [
 		component: home
 	},
 	{ 
-        path: '/detail/:id',
+        path: '/topic/:id',
 		exact: false,
-		component: detail
+		component: topic
 	},
 	{ 
         path: '/signin',
@@ -33,19 +33,19 @@ const Root = (props) => {
         <Switch>
         <Route path="/" exact render={()=>(<Redirect to="/index/all" />)}/>
 		<Route path='/index/:type' component={home} />
-		<Route path='/detail/:id' component={detail} />
+		<Route path='/topic/:id' component={topic} />
 		<Route path='/signin' component={signin} />
-		<LoginComponent path='/user/:name' component={user} />
-		<LoginComponent path='/create' component={create} />
-		<LoginComponent path='/messages' component={messages} />
+		<LoginRoute path='/user/:name' component={user} />
+		<LoginRoute path='/create' component={create} />
+		<LoginRoute path='/messages' component={messages} />
         </Switch>
     </HashRouter>
   );
 }
 
-const LoginComponent = ({ component:Component, ...data }) => (
+const LoginRoute = ({ component:Component, ...data }) => (
 	<Route {...data} render={props => (
-	  !JSON.parse(window.localStorage.getItem('user')) 
+	  !window.localStorage.getItem('accessToken') 
 		? <Redirect to={{
 		  pathname: '/signin',
 		  state: { from: props.location }
